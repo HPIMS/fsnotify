@@ -118,7 +118,7 @@ func (w *readDirChangesW) AddWith(name string, opts ...addOpt) error {
 	}
 
 	with := getOptions(opts...)
-	if !w.xSupports(with.op) {
+	if !w.XSupports(with.op) {
 		return fmt.Errorf("%w: %s", xErrUnsupported, with.op)
 	}
 	if with.bufsize < 4096 {
@@ -671,7 +671,7 @@ func (w *readDirChangesW) toFSnotifyFlags(action uint32) uint64 {
 	return 0
 }
 
-func (w *readDirChangesW) xSupports(op Op) bool {
+func (w *readDirChangesW) XSupports(op Op) bool {
 	if op.Has(XUnportableOpen) || op.Has(XUnportableRead) ||
 		op.Has(XUnportableCloseWrite) || op.Has(XUnportableCloseRead) {
 		return false

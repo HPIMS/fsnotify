@@ -187,7 +187,7 @@ func (w *inotify) AddWith(path string, opts ...addOpt) error {
 	}
 
 	with := getOptions(opts...)
-	if !w.xSupports(with.op) {
+	if !w.XSupports(with.op) {
 		return fmt.Errorf("%w: %s", xErrUnsupported, with.op)
 	}
 
@@ -572,7 +572,7 @@ func (w *inotify) newEvent(name string, mask, cookie uint32) Event {
 	return e
 }
 
-func (w *inotify) xSupports(op Op) bool {
+func (w *inotify) XSupports(op Op) bool {
 	return true // Supports everything.
 }
 

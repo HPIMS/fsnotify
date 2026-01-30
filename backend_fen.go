@@ -70,7 +70,7 @@ func (w *fen) AddWith(name string, opts ...addOpt) error {
 	}
 
 	with := getOptions(opts...)
-	if !w.xSupports(with.op) {
+	if !w.XSupports(with.op) {
 		return fmt.Errorf("%w: %s", xErrUnsupported, with.op)
 	}
 
@@ -460,7 +460,7 @@ func (w *fen) WatchList() []string {
 	return entries
 }
 
-func (w *fen) xSupports(op Op) bool {
+func (w *fen) XSupports(op Op) bool {
 	if op.Has(XUnportableOpen) || op.Has(XUnportableRead) ||
 		op.Has(XUnportableCloseWrite) || op.Has(XUnportableCloseRead) {
 		return false

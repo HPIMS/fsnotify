@@ -345,7 +345,7 @@ func (w *Watcher) WatchList() []string { return w.b.WatchList() }
 //
 // Create, Write, Remove, Rename, and Chmod are always supported. It can only
 // return false for an Op starting with Unportable.
-func (w *Watcher) xSupports(op Op) bool { return w.b.xSupports(op) }
+func (w *Watcher) XSupports(op Op) bool { return w.b.XSupports(op) }
 
 func (o Op) String() string {
 	var b strings.Builder
@@ -403,7 +403,7 @@ type (
 		Remove(string) error
 		WatchList() []string
 		Close() error
-		xSupports(Op) bool
+		XSupports(Op) bool
 	}
 	addOpt   func(opt *withOpts)
 	withOpts struct {

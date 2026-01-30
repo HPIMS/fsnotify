@@ -264,7 +264,7 @@ func (w *kqueue) AddWith(name string, opts ...addOpt) error {
 	}
 
 	with := getOptions(opts...)
-	if !w.xSupports(with.op) {
+	if !w.XSupports(with.op) {
 		return fmt.Errorf("%w: %s", xErrUnsupported, with.op)
 	}
 
@@ -688,7 +688,7 @@ func (w *kqueue) read(events []unix.Kevent_t) ([]unix.Kevent_t, error) {
 	return events[0:n], nil
 }
 
-func (w *kqueue) xSupports(op Op) bool {
+func (w *kqueue) XSupports(op Op) bool {
 	//if runtime.GOOS == "freebsd" {
 	//	return true // Supports everything.
 	//}
