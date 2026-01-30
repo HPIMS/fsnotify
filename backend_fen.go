@@ -417,7 +417,7 @@ func (w *fen) associateFile(path string, stat os.FileInfo, follow bool) error {
 		// is explicitly watched.
 		events |= unix.FILE_NOFOLLOW
 	}
-	if true { // TODO: implement withOps()
+	if true { // TODO: implement WithOps()
 		events |= unix.FILE_MODIFIED
 	}
 	if true {
@@ -461,8 +461,8 @@ func (w *fen) WatchList() []string {
 }
 
 func (w *fen) xSupports(op Op) bool {
-	if op.Has(xUnportableOpen) || op.Has(xUnportableRead) ||
-		op.Has(xUnportableCloseWrite) || op.Has(xUnportableCloseRead) {
+	if op.Has(XUnportableOpen) || op.Has(XUnportableRead) ||
+		op.Has(XUnportableCloseWrite) || op.Has(XUnportableCloseRead) {
 		return false
 	}
 	return true

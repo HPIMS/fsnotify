@@ -672,8 +672,8 @@ func (w *readDirChangesW) toFSnotifyFlags(action uint32) uint64 {
 }
 
 func (w *readDirChangesW) xSupports(op Op) bool {
-	if op.Has(xUnportableOpen) || op.Has(xUnportableRead) ||
-		op.Has(xUnportableCloseWrite) || op.Has(xUnportableCloseRead) {
+	if op.Has(XUnportableOpen) || op.Has(XUnportableRead) ||
+		op.Has(XUnportableCloseWrite) || op.Has(XUnportableCloseRead) {
 		return false
 	}
 	return true

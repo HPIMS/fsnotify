@@ -208,16 +208,16 @@ func (w *inotify) AddWith(path string, opts ...addOpt) error {
 		if with.op.Has(Chmod) {
 			flags |= unix.IN_ATTRIB
 		}
-		if with.op.Has(xUnportableOpen) {
+		if with.op.Has(XUnportableOpen) {
 			flags |= unix.IN_OPEN
 		}
-		if with.op.Has(xUnportableRead) {
+		if with.op.Has(XUnportableRead) {
 			flags |= unix.IN_ACCESS
 		}
-		if with.op.Has(xUnportableCloseWrite) {
+		if with.op.Has(XUnportableCloseWrite) {
 			flags |= unix.IN_CLOSE_WRITE
 		}
-		if with.op.Has(xUnportableCloseRead) {
+		if with.op.Has(XUnportableCloseRead) {
 			flags |= unix.IN_CLOSE_NOWRITE
 		}
 		return w.register(path, flags, wf)
@@ -529,16 +529,16 @@ func (w *inotify) newEvent(name string, mask, cookie uint32) Event {
 		e.Op |= Write
 	}
 	if mask&unix.IN_OPEN == unix.IN_OPEN {
-		e.Op |= xUnportableOpen
+		e.Op |= XUnportableOpen
 	}
 	if mask&unix.IN_ACCESS == unix.IN_ACCESS {
-		e.Op |= xUnportableRead
+		e.Op |= XUnportableRead
 	}
 	if mask&unix.IN_CLOSE_WRITE == unix.IN_CLOSE_WRITE {
-		e.Op |= xUnportableCloseWrite
+		e.Op |= XUnportableCloseWrite
 	}
 	if mask&unix.IN_CLOSE_NOWRITE == unix.IN_CLOSE_NOWRITE {
-		e.Op |= xUnportableCloseRead
+		e.Op |= XUnportableCloseRead
 	}
 	if mask&unix.IN_MOVE_SELF == unix.IN_MOVE_SELF || mask&unix.IN_MOVED_FROM == unix.IN_MOVED_FROM {
 		e.Op |= Rename

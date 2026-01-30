@@ -556,13 +556,13 @@ func newEvents(t *testing.T, s string) Events {
 			case "CHMOD":
 				op |= Chmod
 			case "OPEN":
-				op |= xUnportableOpen
+				op |= XUnportableOpen
 			case "READ":
-				op |= xUnportableRead
+				op |= XUnportableRead
 			case "CLOSE_WRITE":
-				op |= xUnportableCloseWrite
+				op |= XUnportableCloseWrite
 			case "CLOSE_READ":
-				op |= xUnportableCloseRead
+				op |= XUnportableCloseRead
 			default:
 				t.Fatalf("newEvents: line %d has unknown event %q: %s", no+1, ee, line)
 			}
@@ -658,7 +658,7 @@ func supportsFilter(t *testing.T) {
 	case "linux":
 		// Run test.
 	default:
-		t.Skip("withOps() not yet supported on " + runtime.GOOS)
+		t.Skip("WithOps() not yet supported on " + runtime.GOOS)
 	}
 }
 
@@ -878,18 +878,18 @@ loop:
 				case "chmod":
 					op |= Chmod
 				case "open":
-					op |= xUnportableOpen
+					op |= XUnportableOpen
 				case "read":
-					op |= xUnportableRead
+					op |= XUnportableRead
 				case "close_write":
-					op |= xUnportableCloseWrite
+					op |= XUnportableCloseWrite
 				case "close_read":
-					op |= xUnportableCloseRead
+					op |= XUnportableCloseRead
 				}
 			}
 			do = append(do, func() {
 				p := tmppath(tmp, c.args[0])
-				err := w.w.AddWith(p, withOps(op))
+				err := w.w.AddWith(p, WithOps(op))
 				if err != nil {
 					t.Fatalf("line %d: addWatch(%q): %s", c.line+1, p, err)
 				}

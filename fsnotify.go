@@ -200,12 +200,12 @@ const (
 	// File descriptor was opened.
 	//
 	// Only works on Linux and FreeBSD.
-	xUnportableOpen
+	XUnportableOpen
 
 	// File was read from.
 	//
 	// Only works on Linux and FreeBSD.
-	xUnportableRead
+	XUnportableRead
 
 	// File opened for writing was closed.
 	//
@@ -215,12 +215,12 @@ const (
 	// waiting for Write events to stop. It's also faster (if you're not
 	// listening to Write events): copying a file of a few GB can easily
 	// generate tens of thousands of Write events in a short span of time.
-	xUnportableCloseWrite
+	XUnportableCloseWrite
 
 	// File opened for reading was closed.
 	//
 	// Only works on Linux.
-	xUnportableCloseRead
+	XUnportableCloseRead
 )
 
 var (
@@ -358,16 +358,16 @@ func (o Op) String() string {
 	if o.Has(Write) {
 		b.WriteString("|WRITE")
 	}
-	if o.Has(xUnportableOpen) {
+	if o.Has(XUnportableOpen) {
 		b.WriteString("|OPEN")
 	}
-	if o.Has(xUnportableRead) {
+	if o.Has(XUnportableRead) {
 		b.WriteString("|READ")
 	}
-	if o.Has(xUnportableCloseWrite) {
+	if o.Has(XUnportableCloseWrite) {
 		b.WriteString("|CLOSE_WRITE")
 	}
-	if o.Has(xUnportableCloseRead) {
+	if o.Has(XUnportableCloseRead) {
 		b.WriteString("|CLOSE_READ")
 	}
 	if o.Has(Rename) {
@@ -463,7 +463,7 @@ func WithBufferSize(bytes int) addOpt {
 //
 // AddWith returns an error when using an unportable operation that's not
 // supported. Use [Watcher.Support] to check for support.
-func withOps(op Op) addOpt {
+func WithOps(op Op) addOpt {
 	return func(opt *withOpts) { opt.op = op }
 }
 

@@ -692,8 +692,8 @@ func (w *kqueue) xSupports(op Op) bool {
 	//if runtime.GOOS == "freebsd" {
 	//	return true // Supports everything.
 	//}
-	if op.Has(xUnportableOpen) || op.Has(xUnportableRead) ||
-		op.Has(xUnportableCloseWrite) || op.Has(xUnportableCloseRead) {
+	if op.Has(XUnportableOpen) || op.Has(XUnportableRead) ||
+		op.Has(XUnportableCloseWrite) || op.Has(XUnportableCloseRead) {
 		return false
 	}
 	return true
